@@ -29,4 +29,4 @@ bin/
 .DS_Store
 
 ### Advent of Code ###
-/Users/declan/IdeaProjects/adventofcode2023/src/puzzle texts/
+src/puzzle texts/
