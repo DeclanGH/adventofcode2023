@@ -1,9 +1,7 @@
 // Advent of code Day 2 solution
 
 import java.io.*;
-import java.math.BigInteger;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 
 public class Day3 {
@@ -85,7 +83,7 @@ public class Day3 {
         for (int i=0; i<numbers.size(); i++) {
             int sizePerIndex = numbers.get(i).size();
             for (int j=0; j<sizePerIndex; j++) {
-                String gearAxis = new String();
+                String gearAxis = "";
                 int partNumber;
                 String partNumberAsString = "";
 
