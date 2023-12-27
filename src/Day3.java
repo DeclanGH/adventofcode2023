@@ -1,11 +1,15 @@
 // Advent of code Day 2 solution
 
 import java.io.*;
+import java.math.BigInteger;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
 
 public class Day3 {
     public static void main(String[] args) throws IOException {
         int sumOfPartNumbers = 0;
+        long sumOfGearRatios = 0;
 
         File file = new File("/Users/declan/IdeaProjects/adventofcode2023/src/puzzle texts/engine schematic");
         BufferedReader br = new BufferedReader(new FileReader(file));
@@ -36,6 +40,7 @@ public class Day3 {
             symbols.add(symbolList);
         }
 
+        // part one
         for (int i=0; i<numbers.size(); i++) {
             int sizePerIndex = numbers.get(i).size();
             for (int j=0; j<sizePerIndex; j++) {
@@ -72,10 +77,66 @@ public class Day3 {
                     partNumber = Integer.parseInt(partNumberAsString);
                     sumOfPartNumbers += partNumber;
                 }
+            }
+        }
 
+        // part two
+        HashMap<String, ArrayList<Integer>> possibleGear = new HashMap<>();
+        for (int i=0; i<numbers.size(); i++) {
+            int sizePerIndex = numbers.get(i).size();
+            for (int j=0; j<sizePerIndex; j++) {
+                String gearAxis = new String();
+                int partNumber;
+                String partNumberAsString = "";
+
+                if (numbers.get(i).get(j) != null) {
+                    StringBuilder sb = new StringBuilder();
+
+                    while (j < sizePerIndex && numbers.get(i).get(j) != null) {
+                        sb.append(numbers.get(i).get(j));
+
+                        // check top
+                        if (i>0 && j>0 && symbols.get(i-1).get(j-1) == '*') gearAxis = (i-1) + "-" + (j-1);
+                        // check middle (our current line)
+                        if (j>0 && symbols.get(i).get(j-1) == '*') gearAxis = i + "-" + (j-1);
+                        // check bottom
+                        if (i<numbers.size()-1 && j>0 && symbols.get(i+1).get(j-1) == '*') gearAxis = (i+1) + "-" + (j-1);
+
+                        j++;
+                    }
+
+                    // things got messy here. got too lazy changing traversal technique
+                    if (j < sizePerIndex) {
+                        if (i>0 && symbols.get(i-1).get(j) == '*' ) gearAxis = (i-1) + "-" + j;
+                        if (i>0 && symbols.get(i-1).get(j-1) == '*') gearAxis = (i-1) + "-" + (j-1);
+                        if (j>0 && symbols.get(i).get(j) == '*') gearAxis = i + "-" + j;
+                        if (i<numbers.size()-1 && symbols.get(i+1).get(j) == '*') gearAxis = (i+1) + "-" + j;
+                        if (i<numbers.size()-1 && symbols.get(i+1).get(j-1) == '*') gearAxis = (i+1) + "-" + (j-1);
+                    }
+
+                    partNumberAsString = sb.toString();
+                }
+
+                if (!gearAxis.isEmpty()) {
+                    partNumber = Integer.parseInt(partNumberAsString);
+                    possibleGear.computeIfAbsent(gearAxis, k -> new ArrayList<>());
+                    possibleGear.get(gearAxis).add(partNumber);
+                }
+            }
+        }
+
+        for (String gearAxis : possibleGear.keySet()) {
+            if (possibleGear.get(gearAxis).size() > 1) {
+                ArrayList<Integer> gearValues = possibleGear.get(gearAxis);
+                int gearRatio = gearValues.get(0);
+                for (int i=1; i<gearValues.size(); i++) {
+                    gearRatio *= gearValues.get(i);
+                }
+                sumOfGearRatios += gearRatio;
             }
         }
 
         System.out.println(sumOfPartNumbers);
+        System.out.println(sumOfGearRatios);
     }
 }
