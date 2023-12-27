@@ -125,6 +125,7 @@ public class Day3 {
             }
         }
 
+        // iterate to add gear ratio to the final sum
         for (String gearAxis : possibleGear.keySet()) {
             if (possibleGear.get(gearAxis).size() > 1) {
                 ArrayList<Integer> gearValues = possibleGear.get(gearAxis);
