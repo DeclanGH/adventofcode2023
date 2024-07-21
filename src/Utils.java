@@ -12,6 +12,7 @@ public class Utils {
      *
      * @param myClass the class containing the string constants
      * @return a set of string constants
+     * @throws RuntimeException Throws a runtime exception when an IllegalAccessException is caught
      */
     public static Set<String> getStringConstantsInClassAsSet(Class<?> myClass) {
         return Stream.of(myClass.getDeclaredFields())
