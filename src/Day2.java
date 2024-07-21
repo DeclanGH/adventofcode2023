@@ -7,7 +7,7 @@ public class Day2 {
         int totalPossibleGames = 0;
         int minimumPossibleGames = 0;
 
-        File file = new File("/Users/declan/IdeaProjects/adventofcode2023/src/puzzle texts/games and record");
+        File file = new File(FilePaths.DAY2_FILEPATH);
         BufferedReader br = new BufferedReader(new FileReader(file));
 
         int gameNumber = 0;

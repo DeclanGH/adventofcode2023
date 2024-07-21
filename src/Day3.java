@@ -9,7 +9,7 @@ public class Day3 {
         int sumOfPartNumbers = 0;
         long sumOfGearRatios = 0;
 
-        File file = new File("/Users/declan/IdeaProjects/adventofcode2023/src/puzzle texts/engine schematic");
+        File file = new File(FilePaths.DAY3_FILEPATH);
         BufferedReader br = new BufferedReader(new FileReader(file));
 
         // create parallel arrays

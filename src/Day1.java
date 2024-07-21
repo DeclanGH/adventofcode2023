@@ -8,7 +8,7 @@ public class Day1 {
     public static void main(String[] args) throws IOException {
         int sumOfCalibrationValues = 0;
 
-        File file = new File("/Users/declan/IdeaProjects/adventofcode2023/src/puzzle texts/calibration document");
+        File file = new File(FilePaths.DAY1_FILEPATH);
         BufferedReader br = new BufferedReader(new FileReader(file));
 
         // Using Regex is an option, but i want my own dictionary

@@ -12,7 +12,7 @@ public class Day4 {
         int totalPoint = 0;
         int totalScratchcards = 0;
 
-        File file = new File("/Users/declan/IdeaProjects/adventofcode2023/src/puzzle texts/scratchcards");
+        File file = new File(FilePaths.DAY4_FILEPATH);
         BufferedReader br = new BufferedReader(new FileReader(file));
 
         int cardCount = 220; // I'll just hardcode this because I know
@@ -23,7 +23,7 @@ public class Day4 {
 
         while ((currLine = br.readLine()) != null) {
             String stringAfterCardID = currLine.substring(currLine.indexOf(':')+1);
-            String[] cardData = stringAfterCardID.split("\\s+");
+            String[] cardData = stringAfterCardID.split(Constants.BLANK_SPACE_REGEX);
 
             // part one
             HashSet<String> cardValues = new HashSet<>();
