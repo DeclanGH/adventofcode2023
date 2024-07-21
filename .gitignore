@@ -30,3 +30,4 @@ bin/
 
 ### Advent of Code ###
 src/puzzle texts/
+/src/FilePaths.java
